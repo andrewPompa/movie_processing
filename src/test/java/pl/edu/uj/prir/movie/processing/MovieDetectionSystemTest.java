@@ -27,10 +27,11 @@ public class MovieDetectionSystemTest {
         ExecutorService executorService = Executors.newFixedThreadPool(2);
         AtomicInteger imageFrameCounter = new AtomicInteger();
         final int[][] image = new int[100][100];
-        executorService.execute(() -> {
-            motionDetectionSystem.addImage(imageFrameCounter.incrementAndGet(), image);
-        });
+        executorService.execute(() -> motionDetectionSystem.addImage(imageFrameCounter.getAndIncrement(), image));
+        executorService.execute(() -> motionDetectionSystem.addImage(imageFrameCounter.getAndIncrement(), image));
         sleep(1100L);
+        assertEquals(resultConsumer.getResult().size(), 1);
+        assertEquals(resultConsumer.getResult().peek().intValue(), 0);
     }
 
 }

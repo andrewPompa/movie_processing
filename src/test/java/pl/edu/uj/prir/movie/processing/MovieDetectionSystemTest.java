@@ -38,5 +38,26 @@ public class MovieDetectionSystemTest {
         });
 
     }
+//todo: do poprawy
+    @Test
+    public void framesPlacementTest() throws InterruptedException {
+        MotionDetectionSystemInterface motionDetectionSystem = new MotionDetectionSystem();
+        ImageConverter imageConverter = new ImageConverter();
+        ResultConsumer resultConsumer = new ResultConsumer();
+        motionDetectionSystem.setImageConverter(imageConverter);
+        motionDetectionSystem.setResultListener(resultConsumer);
+
+        final int[][] image = new int[100][100];
+        motionDetectionSystem.addImage(1, image);
+        motionDetectionSystem.addImage(2, image);
+        motionDetectionSystem.addImage(3, image);
+        motionDetectionSystem.addImage(0, image);
+
+        await().atMost(2L, TimeUnit.SECONDS).until(() -> {
+            assertEquals(resultConsumer.getResult().peek().intValue(), 3);
+            assertEquals(resultConsumer.getResult().size(), 4);
+        });
+
+    }
 
 }

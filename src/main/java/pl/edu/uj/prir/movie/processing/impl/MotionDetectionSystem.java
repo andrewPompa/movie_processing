@@ -58,6 +58,7 @@ public class MotionDetectionSystem implements MotionDetectionSystemInterface, Ru
                     movieFrameQueueElement.getFrameNumber(),
                     movieFrameQueueElement.getFrames(),
                     nextMovieFrameQueueElement.getFrames());
+            logger.log(Level.INFO, "computing {0} frame", movieFrameQueueElement.getFrameNumber());
             computedFramesProducer.addProducedFrame(movieFrameQueueElement.getFrameNumber(), result);
         });
 

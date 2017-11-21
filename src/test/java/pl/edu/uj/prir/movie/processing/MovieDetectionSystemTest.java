@@ -1,6 +1,8 @@
 package pl.edu.uj.prir.movie.processing;
 
 import com.jayway.awaitility.Awaitility;
+import org.assertj.core.api.Assertions;
+import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 import pl.edu.uj.prir.movie.processing.impl.ImageConverter;
 import pl.edu.uj.prir.movie.processing.impl.MotionDetectionSystem;
@@ -13,6 +15,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import static com.jayway.awaitility.Awaitility.*;
 import static java.lang.Thread.sleep;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.testng.Assert.*;
 
 /**
@@ -38,7 +41,6 @@ public class MovieDetectionSystemTest {
         });
 
     }
-//todo: do poprawy
     @Test
     public void framesPlacementTest() throws InterruptedException {
         MotionDetectionSystemInterface motionDetectionSystem = new MotionDetectionSystem();
@@ -52,10 +54,10 @@ public class MovieDetectionSystemTest {
         motionDetectionSystem.addImage(2, image);
         motionDetectionSystem.addImage(3, image);
         motionDetectionSystem.addImage(0, image);
-
-        await().atMost(2L, TimeUnit.SECONDS).until(() -> {
-            assertEquals(resultConsumer.getResult().peek().intValue(), 3);
-            assertEquals(resultConsumer.getResult().size(), 4);
+        await().atMost(5L, TimeUnit.SECONDS).until(() -> {
+            assertThat(resultConsumer.getResult())
+                    .hasSize(3)
+                    .containsExactlyInAnyOrder(0,1,2);
         });
 
     }

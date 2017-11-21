@@ -17,15 +17,17 @@ public class MovieFrameQueueElement implements Comparable<MovieFrameQueueElement
     }
 
     public boolean shouldCompute(MovieFrameQueueElement nextFrame) {
-        return nextFrame.getFrameNumber() - movieFrame.getFrameNumber() == 1;
+        return nextFrame.getFrameNumber() - movieFrame.getFrameNumber() == 1 && !frameComputed.get();
     }
 
     public int getFrameNumber() {
         return movieFrame.getFrameNumber();
     }
+
     public void setAsComputed() {
         frameComputed.set(true);
     }
+
     public void setComputedAsNextFrame() {
         frameComputedAsNext.set(true);
     }

@@ -33,6 +33,7 @@ public class ComputedFramesProducer {
     public void addProducedFrame(final int frameNumber, final Point2D.Double result) {
         producerLock.writeLock().lock();
         try {
+            logger.log(Level.INFO,"got frame {0}, already have {1} elements", new Object[]{frameNumber, computedFramesMap.size()});
             computedFramesMap.put(frameNumber, result);
         } finally {
             producerLock.writeLock().unlock();
@@ -45,7 +46,7 @@ public class ComputedFramesProducer {
         try {
             final Point2D.Double result = computedFramesMap.get(computedFramesCounter);
             if (result == null) {
-                logger.log(Level.INFO,"cannot get {0} frame waiting currently waiting {1} elements", new Object[]{computedFramesCounter, computedFramesMap.size()});
+                logger.log(Level.INFO,"cannot get {0} frame currently waiting {1} elements", new Object[]{computedFramesCounter, computedFramesMap.size()});
                 return;
             }
             resultConsumer.accept(computedFramesCounter, result);

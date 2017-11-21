@@ -1,7 +1,5 @@
 package pl.edu.uj.prir.movie.processing.model;
 
-import com.sun.javafx.binding.StringFormatter;
-
 /**
  * Created by Katarzyna on 2017-11-19.
  */

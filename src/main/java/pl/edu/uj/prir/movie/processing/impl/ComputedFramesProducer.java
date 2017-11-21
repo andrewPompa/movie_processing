@@ -1,4 +1,4 @@
-package pl.edu.uj.prir.movie.processing.producer;
+package pl.edu.uj.prir.movie.processing.impl;
 
 import pl.edu.uj.prir.movie.processing.ResultConsumerInterface;
 

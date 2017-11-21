@@ -3,10 +3,8 @@ package pl.edu.uj.prir.movie.processing.impl;
 import pl.edu.uj.prir.movie.processing.ImageConverterInterface;
 import pl.edu.uj.prir.movie.processing.MotionDetectionSystemInterface;
 import pl.edu.uj.prir.movie.processing.ResultConsumerInterface;
-import pl.edu.uj.prir.movie.processing.consumer.MovieFrameConsumer;
 import pl.edu.uj.prir.movie.processing.model.MovieFrame;
 import pl.edu.uj.prir.movie.processing.model.MovieFrameQueueElement;
-import pl.edu.uj.prir.movie.processing.producer.ComputedFramesProducer;
 
 import java.awt.geom.Point2D;
 import java.util.concurrent.*;

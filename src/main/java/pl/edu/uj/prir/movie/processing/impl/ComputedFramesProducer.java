@@ -35,22 +35,26 @@ public class ComputedFramesProducer {
         try {
             computedFramesMap.put(frameNumber, result);
         } finally {
-            producerLock.readLock().unlock();
+            producerLock.writeLock().unlock();
         }
         notifyConsumer();
     }
 
     private void notifyConsumer() {
-        producerLock.readLock().unlock();
+        producerLock.readLock().lock();
         try {
             final Point2D.Double result = computedFramesMap.get(computedFramesCounter);
             if (result == null) {
-                logger.log(Level.INFO,"cannot get {0} frame waiting", computedFramesCounter);
+                logger.log(Level.INFO,"cannot get {0} frame waiting currently waiting {1} elements", new Object[]{computedFramesCounter, computedFramesMap.size()});
                 return;
             }
             resultConsumer.accept(computedFramesCounter, result);
             computedFramesMap.remove(computedFramesCounter);
             computedFramesCounter++;
+
+            if (!computedFramesMap.isEmpty()) {
+                notifyConsumer();
+            }
         } finally {
             producerLock.readLock().unlock();
         }

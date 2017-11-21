@@ -27,7 +27,7 @@ public class MovieFrameConsumer {
         movieFrameLock.readLock().lock();
         try {
             movieFrameQueue.add(newElement);
-            if (movieFrameQueue.size() <= 2) {
+            if (movieFrameQueue.size() < 2) {
                 logger.info("not enough elements in queue, waiting for more than one");
                 return;
             }
@@ -35,6 +35,8 @@ public class MovieFrameConsumer {
                 MovieFrameQueueElement movieFrameQueueElement = movieFrameQueue.poll();
                 if (movieFrameQueue.peek() == null) {
                     logger.log(Level.INFO, "{0} is last element finished computation", movieFrameQueueElement);
+                    newMovieFrameQueue.add(movieFrameQueueElement);
+                    break;
                 }
                 if (movieFrameQueueElement.shouldCompute(movieFrameQueue.peek())) {
                     orderFrameComputation(movieFrameQueueElement, movieFrameQueue.peek());

@@ -4,7 +4,6 @@ import pl.edu.uj.prir.movie.processing.ResultConsumerInterface;
 
 import java.awt.geom.Point2D;
 import java.util.LinkedList;
-import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.logging.Level;

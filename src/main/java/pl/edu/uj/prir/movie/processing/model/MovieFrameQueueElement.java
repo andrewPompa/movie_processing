@@ -5,7 +5,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 /**
  * Created by Katarzyna on 2017-11-19.
  */
-public class MovieFrameQueueElement {
+public class MovieFrameQueueElement implements Comparable<MovieFrameQueueElement> {
     private final MovieFrame movieFrame;
     private final AtomicBoolean frameComputed;
     private final AtomicBoolean frameComputedAsNext;
@@ -13,7 +13,7 @@ public class MovieFrameQueueElement {
     public MovieFrameQueueElement(MovieFrame movieFrame) {
         this.movieFrame = movieFrame;
         frameComputed = new AtomicBoolean();
-        frameComputedAsNext = new AtomicBoolean(movieFrame.getFrameNumber() != 0);
+        frameComputedAsNext = new AtomicBoolean(movieFrame.getFrameNumber() == 0);
     }
 
     public boolean shouldCompute(MovieFrameQueueElement nextFrame) {
@@ -36,5 +36,15 @@ public class MovieFrameQueueElement {
 
     public synchronized boolean isComputed() {
         return frameComputed.get() && frameComputedAsNext.get();
+    }
+
+    @Override
+    public int compareTo(MovieFrameQueueElement movieFrameQueueElement) {
+        return movieFrame.compareTo(movieFrameQueueElement.movieFrame);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("MovieFrameQueueElement: [%s computed: %s, computedAsNext: %s]", movieFrame.toString(), frameComputed.get(), frameComputedAsNext.get());
     }
 }

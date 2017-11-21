@@ -41,6 +41,7 @@ public class MotionDetectionSystem implements MotionDetectionSystemInterface, Ru
         try {
             while (!Thread.interrupted()) {
                 MovieFrame newMovieFrameFrame = movieFrameBuffer.take();
+                logger.log(Level.INFO, "adding new frame: {0}", newMovieFrameFrame.toString());
                 MovieFrameQueueElement movieFrameQueueElement = new MovieFrameQueueElement(newMovieFrameFrame);
                 movieFrameConsumer.computeMovieFrames(movieFrameQueueElement);
             }
@@ -81,7 +82,6 @@ public class MotionDetectionSystem implements MotionDetectionSystemInterface, Ru
     @Override
     public void addImage(int frameNumber, int[][] image) {
         MovieFrame movieFrame = new MovieFrame(frameNumber, image);
-        logger.log(Level.INFO, "adding new frame: {0}", movieFrame.toString());
         movieFrameBuffer.add(movieFrame);
     }
 

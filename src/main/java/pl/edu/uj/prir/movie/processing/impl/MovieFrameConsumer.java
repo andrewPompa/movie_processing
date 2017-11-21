@@ -24,7 +24,7 @@ public class MovieFrameConsumer {
     }
     public void computeMovieFrames(MovieFrameQueueElement newElement) {
         BlockingQueue<MovieFrameQueueElement> newMovieFrameQueue = new PriorityBlockingQueue<>();
-        movieFrameLock.readLock().lock();
+        movieFrameLock.writeLock().lock();
         try {
             movieFrameQueue.add(newElement);
             if (movieFrameQueue.size() < 2) {
@@ -47,7 +47,7 @@ public class MovieFrameConsumer {
             }
             movieFrameQueue = newMovieFrameQueue;
         } finally {
-            movieFrameLock.readLock().unlock();
+            movieFrameLock.writeLock().unlock();
         }
     }
 

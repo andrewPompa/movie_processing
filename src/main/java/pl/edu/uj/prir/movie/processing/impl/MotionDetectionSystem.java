@@ -12,7 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Created by Katarzyna on 2017-11-18.
+ * Created by @author michal jazowski on 19.11.17. on 2017-11-18.
  */
 public class MotionDetectionSystem implements MotionDetectionSystemInterface, Runnable {
     private static final int DEFAULT_THREAD_POOL_SIZE = 2;

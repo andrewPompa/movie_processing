@@ -23,7 +23,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.testng.Assert.*;
 
 /**
- * Created by michal.jazowski on 2017-11-18.
+ * Created by @author michal jazowski on 19.11.17. on 2017-11-18.
  */
 public class MovieDetectionSystemTest {
     @Test

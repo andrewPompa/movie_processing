@@ -3,7 +3,7 @@ package pl.edu.uj.prir.movie.processing.model;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
- * Created by Katarzyna on 2017-11-19.
+ * Created by @author michal jazowski on 19.11.17. on 2017-11-19.
  */
 public class MovieFrameQueueElement implements Comparable<MovieFrameQueueElement> {
     private final MovieFrame movieFrame;

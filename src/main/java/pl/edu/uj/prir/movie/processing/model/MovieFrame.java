@@ -1,7 +1,7 @@
 package pl.edu.uj.prir.movie.processing.model;
 
 /**
- * Created by Katarzyna on 2017-11-19.
+ * Created by @author michal jazowski on 19.11.17. on 2017-11-19.
  */
 public class MovieFrame implements Comparable<MovieFrame> {
     private final int frameNumber;

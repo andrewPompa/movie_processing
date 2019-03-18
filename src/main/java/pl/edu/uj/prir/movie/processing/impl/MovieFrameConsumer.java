@@ -9,7 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Created by Katarzyna on 2017-11-19.
+ * Created by @author michal jazowski on 19.11.17. on 2017-11-19.
  */
 public class MovieFrameConsumer {
     private static final Logger logger = Logger.getLogger(MovieFrameConsumer.class.getName());
